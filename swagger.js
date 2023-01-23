@@ -19,10 +19,10 @@ const swaggerSpec = swaggerJSDoc(options);
 //setup docs
 const swaggerDocs = (app, port) => {
     app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-    app.get('/json', (req, res) => {
-        res.setHeader('Content-Type', 'application/json');
-        res.send(swaggerSpec);
-    });
+    // app.get('/json', (req, res) => {
+    //     res.setHeader('Content-Type', 'application/json');
+    //     res.send(swaggerSpec);
+    // });
 
     console.log("Swagger docs already loaded!")
 }
