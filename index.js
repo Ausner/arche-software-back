@@ -33,10 +33,15 @@ const options = {
     apis: ["routes/promotions.js"]
 };
 
+var styleOps = {
+    customCss: '.swagger-ui .topbar { display: none }',
+    customSiteTitle: "Arche Software API",
+};
+
 //Docs on JSON format
 const swaggerSpec = swaggerJSDoc(options);
 
-app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerSpec, styleOps));
 
 
 //end here
