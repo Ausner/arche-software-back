@@ -35,7 +35,7 @@ var styleOps = {
 const swaggerSpec = swaggerJSDoc(options);
 
 app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerSpec, styleOps));
-
+app.use(express.static('public'))
 
 //Middlewares
 app.use(express.json());
