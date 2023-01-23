@@ -14,13 +14,6 @@ const app = express();
 const port = process.env.PORT || 9000;
 
 
-
-
-
-//Middlewares
-app.use(express.json());
-
-
 //here
 const options = {
     definition: {
@@ -42,6 +35,10 @@ var styleOps = {
 const swaggerSpec = swaggerJSDoc(options);
 
 app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerSpec, styleOps));
+
+
+//Middlewares
+app.use(express.json());
 
 
 //end here
