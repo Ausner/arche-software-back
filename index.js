@@ -1,7 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();
-const {swaggerDocs} = require('./swagger');
 const swaggerJSDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 
@@ -14,7 +13,6 @@ const app = express();
 const port = process.env.PORT || 9000;
 
 
-//here
 const options = {
     definition: {
         openapi: "3.0.0",
@@ -26,22 +24,15 @@ const options = {
     apis: ["routes/promotions.js"]
 };
 
-var styleOps = {
-    customCss: '.swagger-ui .topbar { display: none }',
-    customSiteTitle: "Arche Software API",
-};
-
 //Docs on JSON format
 const swaggerSpec = swaggerJSDoc(options);
 
-app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerSpec, styleOps));
-app.use(express.static('public'))
+
 
 //Middlewares
 app.use(express.json());
 
-
-//end here
+app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Routes
 app.use('/api', promotionRoutes);
