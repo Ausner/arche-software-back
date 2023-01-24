@@ -6,33 +6,12 @@ const swaggerUi = require("swagger-ui-express");
 const path = require("path");
 const cors = require('cors')
 
-
-//import routes
-const promotionRoutes = require("./routes/promotions");
-
 const app = express();
 
 const port = process.env.PORT || 9000;
 
-
-// const options = {
-//     definition: {
-//         openapi: "3.0.0",
-//         info: {
-//             title: "Arche Software API Documentation",
-//             version: "1.0.0"
-//         },
-//     },
-//     apis: ["routes/promotions.js"]
-// };
-
-// //Docs on JSON format
-// const swaggerSpec = swaggerJSDoc(options);
-// app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-
-
-
-
+const promotionPath = '/api/promotions';
+const reviewsPath = '/api/reviews';
 
 //cors
 app.use(cors());
@@ -42,7 +21,9 @@ app.use(express.json());
 
 
 // Routes
-app.use('/api', promotionRoutes);
+app.use(promotionPath, require('./routes/promotions'));
+app.use(reviewsPath, require('./routes/reviews'));
+// app.use('/', reviewRoutes);
 
 app.get('/',function(req,res){
     res.sendFile(path.join(__dirname+'/public/index.html'));

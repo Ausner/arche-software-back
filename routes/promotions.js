@@ -226,7 +226,7 @@ const router = express.Router();
  *                      type: object
  *                      example: FAILED                       
  */
-router.post('/promotions', (req, res) => {
+router.post('/', (req, res) => {
     const {apikey} = req.headers;
 
     if (apikey === undefined) {
@@ -241,7 +241,7 @@ router.post('/promotions', (req, res) => {
 });
 
 //Get promotions
-router.get('/promotions', (req, res) => {
+router.get('/', (req, res) => {
     const {apikey} = req.headers;
 
     if (apikey === undefined) {
@@ -256,7 +256,7 @@ router.get('/promotions', (req, res) => {
 });
 
 //Get promotion by id
-router.get('/promotions/:id', (req, res) => {
+router.get('/:id', (req, res) => {
     const {apikey} = req.headers;
 
     if (apikey === undefined) {
@@ -273,7 +273,7 @@ router.get('/promotions/:id', (req, res) => {
 
 
 //Update promotion
-router.put('/promotions/:id', (req, res) => {
+router.put('/:id', (req, res) => {
     const {apikey} = req.headers;
 
     if (apikey === undefined) {
@@ -292,7 +292,7 @@ router.put('/promotions/:id', (req, res) => {
 
 
 //Update promotion
-router.delete('/promotions/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
     const {apikey} = req.headers;
 
     if (apikey === undefined) {
