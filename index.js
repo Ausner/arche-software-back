@@ -4,6 +4,7 @@ require("dotenv").config();
 const swaggerJSDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 const path = require("path");
+const cors = require('cors')
 
 
 //import routes
@@ -34,6 +35,9 @@ const port = process.env.PORT || 9000;
 // app.use(express.json());
 
 // app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+//cors
+app.use(cors());
 
 // Routes
 app.use('/api', promotionRoutes);
