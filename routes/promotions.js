@@ -1,5 +1,7 @@
 const express = require ("express");
 const promotionModel = require("../models/promotions");
+require("dotenv").config();
+
 
 const router = express.Router();
 
@@ -225,6 +227,13 @@ const router = express.Router();
  *                      example: FAILED                       
  */
 router.post('/promotions', (req, res) => {
+    const {apikey} = req.headers;
+
+    if (apikey === undefined) {
+        res.json({messageError: "You need to send the 'apikey' in the headers"})
+    } else if (apikey.toString() !== process.env.apikey) {
+        res.json({messageError: "Invalid apikey"})
+    }
     const promo = promotionModel(req.body);
     promo.save()
     .then((data) => res.json(data))
@@ -233,6 +242,14 @@ router.post('/promotions', (req, res) => {
 
 //Get promotions
 router.get('/promotions', (req, res) => {
+    const {apikey} = req.headers;
+
+    if (apikey === undefined) {
+        res.json({messageError: "You need to send the 'apikey' in the headers"})
+    } else if (apikey.toString() !== process.env.apikey) {
+        res.json({messageError: "Invalid apikey"})
+    }
+    
     promotionModel.find()
     .then((data) => res.json(data))
     .catch((error) => res.json({messageError: error}));
@@ -240,6 +257,14 @@ router.get('/promotions', (req, res) => {
 
 //Get promotion by id
 router.get('/promotions/:id', (req, res) => {
+    const {apikey} = req.headers;
+
+    if (apikey === undefined) {
+        res.json({messageError: "You need to send the 'apikey' in the headers"})
+    } else if (apikey.toString() !== process.env.apikey) {
+        res.json({messageError: "Invalid apikey"})
+    }
+
     const {id} = req.params;
     promotionModel.findById(id)
     .then((data) => res.json(data))
@@ -249,6 +274,14 @@ router.get('/promotions/:id', (req, res) => {
 
 //Update promotion
 router.put('/promotions/:id', (req, res) => {
+    const {apikey} = req.headers;
+
+    if (apikey === undefined) {
+        res.json({messageError: "You need to send the 'apikey' in the headers"})
+    } else if (apikey.toString() !== process.env.apikey) {
+        res.json({messageError: "Invalid apikey"})
+    }
+
     const { id } = req.params;
     console.log("id: ", id)
     const { name, detail, price, img } = req.body;
@@ -260,6 +293,15 @@ router.put('/promotions/:id', (req, res) => {
 
 //Update promotion
 router.delete('/promotions/:id', (req, res) => {
+    const {apikey} = req.headers;
+
+    if (apikey === undefined) {
+        res.json({messageError: "You need to send the 'apikey' in the headers"})
+    } else if (apikey.toString() !== process.env.apikey) {
+        res.json({messageError: "Invalid apikey"})
+    }
+
+
     const { id } = req.params;
     promotionModel.remove({_id : `${id}`})
     .then((data) => res.json(data))
