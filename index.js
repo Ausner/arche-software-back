@@ -28,16 +28,18 @@ const port = process.env.PORT || 9000;
 
 // //Docs on JSON format
 // const swaggerSpec = swaggerJSDoc(options);
-
-
-
-// //Middlewares
-// app.use(express.json());
-
 // app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+
+
+
 
 //cors
 app.use(cors());
+
+// //Middlewares
+app.use(express.json());
+
 
 // Routes
 app.use('/api', promotionRoutes);
