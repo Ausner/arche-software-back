@@ -6,7 +6,7 @@ const sgMail = require('@sendgrid/mail');
 const router = express.Router();
 
 
-router.post('/', (req, res) => {
+router.post('/',  (req, res) => {
     const {apikey} = req.headers;
 
     if (apikey === undefined) {
@@ -35,7 +35,7 @@ router.post('/', (req, res) => {
         sgMail
             .send(msg)
             .then(() => {
-                res.json({message: "Email sent!"})
+                res.json({message: "Email sent!!!"})
             })
             .catch((error) => {
                 res.json({message: "Email NOT sent!", issue: error})
