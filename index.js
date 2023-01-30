@@ -12,6 +12,7 @@ const port = process.env.PORT || 9000;
 
 const promotionPath = '/api/promotions';
 const reviewsPath = '/api/reviews';
+const emailsPath = '/api/emails';
 
 //cors
 app.use(cors());
@@ -23,6 +24,7 @@ app.use(express.json());
 // Routes
 app.use(promotionPath, require('./routes/promotions'));
 app.use(reviewsPath, require('./routes/reviews'));
+app.use(emailsPath, require('./routes/emails'));
 // app.use('/', reviewRoutes);
 
 app.get('/',function(req,res){
